@@ -85,7 +85,7 @@ export async function GET() {
   // );
 
   const svg = `
-<svg width="800" height="800" xmlns="http://www.w3.org/2000/svg">
+<svg width="1000" height="800" xmlns="http://www.w3.org/2000/svg">
   <defs>
     <style>
       .terminal-bg { fill: #0d1117; }
@@ -103,8 +103,8 @@ export async function GET() {
       .info { fill: #3b82f6; font-family: 'Fira Code', monospace; font-size: 14px; }
     </style>
   </defs>
-
   <!-- Header bar -->
+  <rect width="100%" height="100%" class="terminal-bg"/>
   <rect width="100%" height="35" class="header-bg"/>
   <circle cx="20" cy="17.5" r="6" class="dot-red"/>
   <circle cx="40" cy="17.5" r="6" class="dot-yellow"/>
@@ -117,7 +117,6 @@ export async function GET() {
     }</text>
     <text x="20" y="80" class="success">✓ Connection established</text>
     <!-- Terminal Background -->
-  <rect width="100%" height="100%" rx="12" class="terminal-bg terminal-border"/>
 
 
   
@@ -192,9 +191,7 @@ export async function GET() {
   <text x="45" y="470" class="command">$ git log --stack --oneline</text>
   
   <!-- Stack Section -->
-  <text x="20" y="490" class="text">Stack (used so far): Typescript, Javascript, C++, Go, Reactjs ,Nextjs, Docker, Git, PostgresSQL, MongoDB</text>
-  <text x="20" y="490" class="text">Stack (used so far): Typescript, Javascript, C++, Go, Reactjs ,Nextjs, Docker, Git, PostgresSQL, MongoDB</text>
-  
+  <text x="20" y="490" class="text">Stack (used so far): Typescript, Javascript, C++, Go, Reactjs ,Nextjs, Docker, Git, PostgresSQL, MongoDB</text>  
   <!-- profiles -->
   <text x="20" y="540" class="prompt">┌──(</text>
   <text x="60" y="540" class="success">dev</text>
@@ -248,12 +245,11 @@ export async function GET() {
   <a href="https://discord.com/users/chandansahoo" target="_blank" rel="noopener noreferrer">
   <text x="120" y="770" class="link">chandansahoo</text>
   </a>
-  
   </svg>
   `;
-  
+
   return new Response(svg, {
-      headers: { "Content-Type": "image/svg+xml" },
+    headers: { "Content-Type": "image/svg+xml" },
   });
 }
 /* eslint-enable @typescript-eslint/no-explicit-any */
