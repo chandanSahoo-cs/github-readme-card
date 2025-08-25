@@ -32,10 +32,10 @@ export async function GET() {
     0
   );
 
-  const forks = repos.reduce(
-    (sum: number, r: any) => sum + (r.forks_count || 0),
-    0
-  );
+  // const forks = repos.reduce(
+  //   (sum: number, r: any) => sum + (r.forks_count || 0),
+  //   0
+  // );
 
   const languages = repos
     .filter((r: any) => r.language)
@@ -78,10 +78,10 @@ export async function GET() {
     ? new Date(commits[0].updated_at).toLocaleDateString()
     : "N/A";
 
-  const accountCreated = new Date(user.created_at);
-  const accountAge = Math.floor(
-    (today.getTime() - accountCreated.getTime()) / (1000 * 60 * 60 * 24 * 365)
-  );
+  // const accountCreated = new Date(user.created_at);
+  // const accountAge = Math.floor(
+  //   (today.getTime() - accountCreated.getTime()) / (1000 * 60 * 60 * 24 * 365)
+  // );
 
   const svg = `
 <svg width="800" height="800" xmlns="http://www.w3.org/2000/svg">
