@@ -191,7 +191,7 @@ export async function GET() {
   <text x="45" y="470" class="command">$ git log --stack --oneline</text>
   
   <!-- Stack Section -->
-  <text x="20" y="490" class="text">Stack (used so far): Typescript, Javascript, C++, Go, Reactjs ,Nextjs, Docker, Git, PostgresSQL, MongoDB</text>  
+  <text x="20" y="490" class="text">Stack (used so far): Typescript, Javascript, C++, Go, Reactjs, Nextjs, Docker, Git, PostgresSQL, MongoDB</text>  
   <!-- profiles -->
   <text x="20" y="540" class="prompt">┌──(</text>
   <text x="60" y="540" class="success">dev</text>
