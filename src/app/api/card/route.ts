@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 // app/api/card/route.ts
 import "dotenv/config";
 
@@ -256,3 +257,4 @@ export async function GET() {
       headers: { "Content-Type": "image/svg+xml" },
   });
 }
+/* eslint-enable @typescript-eslint/no-explicit-any */
