@@ -140,9 +140,7 @@ export async function GET() {
   
   <!-- Profile Picture (ASCII Art Style) -->
   <rect x="20" y="185" width="120" height="120" rx="60" fill="#30363d" stroke="#58a6ff" stroke-width="2"/>
-  <image x="25" y="190" width="110" height="110" href="${
-    user.avatar_url
-  }" clip-path="circle(55px at 55px 55px)"/>
+  <image x="25" y="190" width="110" height="110" href="/me.jpg" clip-path="circle(55px at 55px 55px)"/>
 
   <!-- Stats Section -->
   <text x="180" y="195" class="info">OS</text>
