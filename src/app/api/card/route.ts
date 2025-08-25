@@ -140,7 +140,7 @@ export async function GET() {
   
   <!-- Profile Picture (ASCII Art Style) -->
   <rect x="20" y="185" width="120" height="120" rx="60" fill="#30363d" stroke="#58a6ff" stroke-width="2"/>
-  <image x="25" y="190" width="110" height="110" href="/me.jpg" clip-path="circle(55px at 55px 55px)"/>
+  <image x="25" y="190" width="110" height="110" href="https://github.com/${username}.png?size=110" clip-path="circle(55px at 55px 55px)"/>
 
   <!-- Stats Section -->
   <text x="180" y="195" class="info">OS</text>
@@ -181,71 +181,72 @@ export async function GET() {
   <rect x="205" y="380" width="20" height="20" fill="#22d3ee"/>
   
   <!-- stack -->
-  <text x="20" y="430" class="prompt">┌──(</text>
-  <text x="60" y="430" class="success">dev</text>
-  <text x="85" y="430" class="prompt">㉿</text>
-  <text x="105" y="430" class="info">github</text>
-  <text x="160" y="430" class="prompt"> )-[</text>
-  <text x="190" y="430" class="accent">~</text>
-  <text x="200" y="430" class="prompt">]</text>
-  <text x="20" y="450" class="prompt">└─</text>
-  <text x="45" y="450" class="command">$ git log --stack --oneline</text>
+  <text x="20" y="450" class="prompt">┌──(</text>
+  <text x="60" y="450" class="success">dev</text>
+  <text x="85" y="450" class="prompt">㉿</text>
+  <text x="105" y="450" class="info">github</text>
+  <text x="160" y="450" class="prompt"> )-[</text>
+  <text x="190" y="450" class="accent">~</text>
+  <text x="200" y="450" class="prompt">]</text>
+  <text x="20" y="470" class="prompt">└─</text>
+  <text x="45" y="470" class="command">$ git log --stack --oneline</text>
   
   <!-- Stack Section -->
-  <text x="20" y="470" class="text">Stack (used so far): Typescript, Javascript, C++, Go, Reactjs ,Nextjs, Docker, Git, PostgresSQL, MongoDB</text>
+  <text x="20" y="490" class="text">Stack (used so far): Typescript, Javascript, C++, Go, Reactjs ,Nextjs, Docker, Git, PostgresSQL, MongoDB</text>
+  <text x="20" y="490" class="text">Stack (used so far): Typescript, Javascript, C++, Go, Reactjs ,Nextjs, Docker, Git, PostgresSQL, MongoDB</text>
   
   <!-- profiles -->
-  <text x="20" y="500" class="prompt">┌──(</text>
-  <text x="60" y="500" class="success">dev</text>
-  <text x="85" y="500" class="prompt">㉿</text>
-  <text x="105" y="500" class="info">github</text>
-  <text x="160" y="500" class="prompt"> )-[</text>
-  <text x="190" y="500" class="accent">~</text>
-  <text x="200" y="500" class="prompt">]</text>
-  <text x="20" y="520" class="prompt">└─</text>
-  <text x="45" y="520" class="command">$ git log --profiles</text>
+  <text x="20" y="540" class="prompt">┌──(</text>
+  <text x="60" y="540" class="success">dev</text>
+  <text x="85" y="540" class="prompt">㉿</text>
+  <text x="105" y="540" class="info">github</text>
+  <text x="160" y="540" class="prompt"> )-[</text>
+  <text x="190" y="540" class="accent">~</text>
+  <text x="200" y="540" class="prompt">]</text>
+  <text x="20" y="560" class="prompt">└─</text>
+  <text x="45" y="560" class="command">$ git log --profiles</text>
   
   <!-- Profile Section -->
-  <text x="20" y="540" class="text">Codeforces</text>
+  <text x="20" y="580" class="text">Codeforces</text>
   <a href="https://codeforces.com/profile/Realmchan" target="_blank" rel="noopener noreferrer">
-  <text x="120" y="540" class="link">Realmchan</text>
-  </a>
-  <text x="20" y="560" class="text" >CodeChef</text>
-  <a href="https://www.codechef.com/users/realm" target="_blank" rel="noopener noreferrer">
-  <text x="120" y="560" class="link">Realm</text>
-  </a>
-  <text x="20" y="580" class="text">Leetcode</text>
-  <a href="https://leetcode.com/realmchan" target="_blank" rel="noopener noreferrer">
   <text x="120" y="580" class="link">Realmchan</text>
+  </a>
+  <text x="20" y="600" class="text" >CodeChef</text>
+  <a href="https://www.codechef.com/users/realm" target="_blank" rel="noopener noreferrer">
+  <text x="120" y="600" class="link">Realm</text>
+  </a>
+  <text x="20" y="620" class="text">Leetcode</text>
+  <a href="https://leetcode.com/realmchan" target="_blank" rel="noopener noreferrer">
+  <text x="120" y="620" class="link">Realmchan</text>
   </a>
   
   <!-- connect -->
-  <text x="20" y="610" class="prompt">┌──(</text>
-  <text x="60" y="610" class="success">dev</text>
-  <text x="85" y="610" class="prompt">㉿</text>
-  <text x="105" y="610" class="info">github</text>
-  <text x="160" y="610" class="prompt"> )-[</text>
-  <text x="190" y="610" class="accent">~</text>
-  <text x="200" y="610" class="prompt">]</text>
-  <text x="20" y="630" class="prompt">└─</text>
-  <text x="45" y="630" class="command">$ git ping -c1 chandansahoo.dev</text>
+  <text x="20" y="670" class="prompt">┌──(</text>
+  <text x="60" y="670" class="success">dev</text>
+  <text x="85" y="670" class="prompt">㉿</text>
+  <text x="105" y="670" class="info">github</text>
+  <text x="160" y="670" class="prompt"> )-[</text>
+  <text x="190" y="670" class="accent">~</text>
+  <text x="200" y="670" class="prompt">]</text>
+  <text x="20" y="690" class="prompt">└─</text>
+  <text x="45" y="690" class="command">$ git ping -c1 chandansahoo.dev</text>
 
   <!-- Connect Section -->
-  <text x="20" y="650" class="text">Email</text>
+  <text x="20" y="710" class="text">Email</text>
   <a href="mailto:chandansahoo02468@gmail.com" target="_blank" rel="noopener noreferrer">
-  <text x="120" y="650" class="link">chandansahoo02468@gmail.com</text>
+  <text x="120" y="710" class="link">chandansahoo02468@gmail.com</text>
   </a>
-  <text x="20" y="670" class="text" >LinkedIn</text>
+  <text x="20" y="730" class="text" >LinkedIn</text>
   <a href="https://linkedin.com/in/chandansahoo-cs" target="_blank" rel="noopener noreferrer">
-  <text x="120" y="670" class="link">chandansahoo-cs</text>
+  <text x="120" y="730" class="link">chandansahoo-cs</text>
   </a>
-  <text x="20" y="690" class="text">Github</text>
+  <text x="20" y="750" class="text">Github</text>
   <a href="https://github.com/chandanSahoo-cs" target="_blank" rel="noopener noreferrer">
-  <text x="120" y="690" class="link">chandanSahoo-cs</text>
+  <text x="120" y="750" class="link">chandanSahoo-cs</text>
   </a>
-  <text x="20" y="710" class="text">Discord</text>
+  <text x="20" y="770" class="text">Discord</text>
   <a href="https://discord.com/users/chandansahoo" target="_blank" rel="noopener noreferrer">
-  <text x="120" y="710" class="link">chandansahoo</text>
+  <text x="120" y="770" class="link">chandansahoo</text>
   </a>
   
   </svg>
