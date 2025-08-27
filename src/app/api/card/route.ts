@@ -76,7 +76,7 @@ export async function GET() {
   const commits = await commitRes.json();
   console.log(commits);
   const lastCommitDate = commits[0]?.updated_at
-    ? new Date(commits[0].updated_at).toLocaleString()
+    ? new Date(commits[0].updated_at).toLocaleDateString()
     : "N/A";
 
   const stack = [
