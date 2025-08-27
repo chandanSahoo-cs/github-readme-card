@@ -79,10 +79,42 @@ export async function GET() {
     ? new Date(commits[0].updated_at).toLocaleDateString()
     : "N/A";
 
-  // const accountCreated = new Date(user.created_at);
-  // const accountAge = Math.floor(
-  //   (today.getTime() - accountCreated.getTime()) / (1000 * 60 * 60 * 24 * 365)
-  // );
+  const stack = [
+    "Typescript",
+    "Javascript",
+    "C++",
+    "Go",
+    "Reactjs",
+    "Nextjs",
+    "Docker",
+    "Git",
+    "PostgresSQL",
+    "MongoDB",
+  ];
+
+  // Rank and Rating
+  const codeforces = await fetch(
+    "https://competeapi.vercel.app/user/codeforces/realmchan/"
+  );
+  const codeforcesDetails = await codeforces.json();
+  const codeforcesRating = await codeforcesDetails[0].rating;
+  const codeforcesRank = await codeforcesDetails[0].rank.toUpperCase();
+
+  const codechef = await fetch(
+    "https://competeapi.vercel.app/user/codechef/realm/"
+  );
+  const codechefDetails = await codechef.json();
+  const codechefRating = await codechefDetails.rating_number;
+  const codechefRank =
+    (await codechefDetails.rating.toUpperCase()[0]) + " STAR";
+
+  const leetcode = await fetch(
+    "https://competeapi.vercel.app/user/leetcode/realmchan/"
+  );
+  const leetcodeDetails = await leetcode.json();
+  const leetcodeRating = Math.floor(
+    leetcodeDetails.data.userContestRanking.rating
+  );
 
   const svg = `
 <svg width="1000" height="800" xmlns="http://www.w3.org/2000/svg">
@@ -143,30 +175,28 @@ export async function GET() {
 
   <!-- Stats Section -->
   <text x="180" y="195" class="info">OS</text>
-  <text x="280" y="195" class="text">Arch Linux</text>
+  <text x="300" y="195" class="text">Arch Linux</text>
 
   <text x="180" y="215" class="info">Host</text>
-  <text x="280" y="215" class="text">${user.location || "Delhi, India"}</text>
+  <text x="300" y="215" class="text">${user.location || "Delhi, India"}</text>
 
   <text x="180" y="235" class="info">Uptime</text>
-  <text x="280" y="235" class="text">${age}</text>
+  <text x="300" y="235" class="text">${age}</text>
 
   <text x="180" y="255" class="info">Repos</text>
-  <text x="280" y="255" class="text">${user.public_repos} repos</text>
+  <text x="300" y="255" class="text">${user.public_repos} repos</text>
 
-  <text x="180" y="275" class="info">Shell</text>
-  <text x="280" y="275" class="text">${topLanguages
-    .slice(0, 2)
-    .join(", ")}</text>
+  <text x="180" y="275" class="info">Top Languages</text>
+  <text x="300" y="275" class="text">${topLanguages.join(" • ")}</text>
 
   <text x="180" y="295" class="info">Stars</text>
-  <text x="280" y="295" class="text">${stars} stars</text>
+  <text x="300" y="295" class="text">${stars} stars</text>
   
   <text x="180" y="315" class="info">Followers</text>
-  <text x="280" y="315" class="text">${user.followers} followers</text>
+  <text x="300" y="315" class="text">${user.followers} followers</text>
   
-  <text x="180" y="335" class="info">Last Commit:</text>
-  <text x="280" y="335" class="text">${lastCommitDate}</text>
+  <text x="180" y="335" class="info">Last Commit</text>
+  <text x="300" y="335" class="text">${lastCommitDate}</text>
 
   <!-- Color Palette -->
   <text x="30" y="370" class="text">Colors:</text>
@@ -191,7 +221,9 @@ export async function GET() {
   <text x="45" y="470" class="command">$ git log --stack --oneline</text>
   
   <!-- Stack Section -->
-  <text x="20" y="490" class="text">Stack (used so far): Typescript, Javascript, C++, Go, Reactjs, Nextjs, Docker, Git, PostgresSQL, MongoDB</text>  
+  <text x="20" y="490" class="text">Stack (used so far): ${stack.join(
+    " • "
+  )}</text>  
   <!-- profiles -->
   <text x="20" y="540" class="prompt">┌──(</text>
   <text x="60" y="540" class="success">dev</text>
@@ -206,15 +238,15 @@ export async function GET() {
   <!-- Profile Section -->
   <text x="20" y="580" class="text">Codeforces</text>
   <a href="https://codeforces.com/profile/Realmchan" target="_blank" rel="noopener noreferrer">
-  <text x="120" y="580" class="link">Realmchan</text>
+  <text x="120" y="580" class="text">Realmchan | ${codeforcesRating} | ${codeforcesRank} </text>
   </a>
   <text x="20" y="600" class="text" >CodeChef</text>
   <a href="https://www.codechef.com/users/realm" target="_blank" rel="noopener noreferrer">
-  <text x="120" y="600" class="link">Realm</text>
+  <text x="120" y="600" class="text">Realm | ${codechefRating} | ${codechefRank} </text>
   </a>
   <text x="20" y="620" class="text">Leetcode</text>
   <a href="https://leetcode.com/realmchan" target="_blank" rel="noopener noreferrer">
-  <text x="120" y="620" class="link">Realmchan</text>
+  <text x="120" y="620" class="text">Realmchan | ${leetcodeRating} </text>
   </a>
   
   <!-- connect -->
@@ -231,19 +263,19 @@ export async function GET() {
   <!-- Connect Section -->
   <text x="20" y="710" class="text">Email</text>
   <a href="mailto:chandansahoo02468@gmail.com" target="_blank" rel="noopener noreferrer">
-  <text x="120" y="710" class="link">chandansahoo02468@gmail.com</text>
+  <text x="120" y="710" class="text">chandansahoo02468@gmail.com</text>
   </a>
   <text x="20" y="730" class="text" >LinkedIn</text>
   <a href="https://linkedin.com/in/chandansahoo-cs" target="_blank" rel="noopener noreferrer">
-  <text x="120" y="730" class="link">chandansahoo-cs</text>
+  <text x="120" y="730" class="text">chandansahoo-cs</text>
   </a>
   <text x="20" y="750" class="text">Github</text>
   <a href="https://github.com/chandanSahoo-cs" target="_blank" rel="noopener noreferrer">
-  <text x="120" y="750" class="link">chandanSahoo-cs</text>
+  <text x="120" y="750" class="text">chandanSahoo-cs</text>
   </a>
   <text x="20" y="770" class="text">Discord</text>
   <a href="https://discord.com/users/chandansahoo" target="_blank" rel="noopener noreferrer">
-  <text x="120" y="770" class="link">chandansahoo</text>
+  <text x="120" y="770" class="text">chandansahoo</text>
   </a>
   </svg>
   `;
