@@ -190,7 +190,7 @@ const fetchedData = async (): Promise<UserProfile | null> => {
 
     return res;
   } catch (error) {
-    console.log("Error :: ", error)
+    console.log("Error :: ", error);
     return null;
   }
 };
@@ -221,7 +221,7 @@ export const profileSVG = async () => {
     const leetcodeRating = data.competitivePlatform.leetcode.leetcodeRating;
 
     const svg = `
-  <svg width="1200" height="800" xmlns="http://www.w3.org/2000/svg">
+  <svg width="1200" height="950" xmlns="http://www.w3.org/2000/svg">
     <defs>
       <style>
         .terminal-bg { fill: #0d1117; }
@@ -230,13 +230,13 @@ export const profileSVG = async () => {
         .dot-red { fill: #ff5f56; }
         .dot-yellow { fill: #ffbd2e; }
         .dot-green { fill: #27c93f; }
-        .prompt { fill: #7c3aed; font-family: 'Fira Code', monospace; font-size: 16px; }
-        .command { fill: #22d3ee; font-family: 'Fira Code', monospace; font-size: 16px; }
-        .text { fill: #e6edf3; font-family: 'Fira Code', monospace; font-size: 16px; }
-        .link {fill: #3a7be5; font-family: 'Fira Code', monospace; font-size: 16px; }
-        .accent { fill: #f97316; font-family: 'Fira Code', monospace; font-size: 16px; }
-        .success { fill: #22c55e; font-family: 'Fira Code', monospace; font-size: 16px; }
-        .info { fill: #3b82f6; font-family: 'Fira Code', monospace; font-size: 16px; }
+        .prompt { fill: #7c3aed; font-family: 'Fira Code', monospace; font-size: 14px; }
+        .command { fill: #22d3ee; font-family: 'Fira Code', monospace; font-size: 14px; }
+        .text { fill: #e6edf3; font-family: 'Fira Code', monospace; font-size: 14px; }
+        .link {fill: #3a7be5; font-family: 'Fira Code', monospace; font-size: 14px; }
+        .accent { fill: #f97316; font-family: 'Fira Code', monospace; font-size: 14px; }
+        .success { fill: #22c55e; font-family: 'Fira Code', monospace; font-size: 14px; }
+        .info { fill: #3b82f6; font-family: 'Fira Code', monospace; font-size: 14px; }
       </style>
     </defs>
     <!-- Header bar -->
@@ -379,6 +379,21 @@ export const profileSVG = async () => {
     <a href="https://discord.com/users/chandansahoo" target="_blank" rel="noopener noreferrer">
     <text x="120" y="770" class="text">chandansahoo</text>
     </a>
+
+    <!-- switch -->
+    <text x="20" y="820" class="prompt">┌──(</text>
+    <text x="60" y="820" class="success">dev</text>
+    <text x="85" y="820" class="prompt">㉿</text>
+    <text x="105" y="820" class="info">github</text>
+    <text x="160" y="820" class="prompt"> )-[</text>
+    <text x="190" y="820" class="accent">~</text>
+    <text x="200" y="820" class="prompt">]</text>
+    <text x="20" y="840" class="prompt">└─</text>
+    <text x="45" y="840" class="command">$ gh-shell switch --keep-history</text>
+
+    <text x="20" y="860" class="text">Switching</text>
+    <text x="20" y="880" class="text">Migrating history... done</text>
+    <text x="20" y="900" class="text">Applying theme: github-readme</text>
     </svg>
     `;
     return svg;
