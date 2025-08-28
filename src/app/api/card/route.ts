@@ -299,9 +299,7 @@ export async function GET() {
   </a>
   </svg>
   `;
-
-  const buffer = await sharp(Buffer.from(svg)).png().toBuffer();
-
+  
   return new Response(svg, {
     headers: { "Content-Type": "image/svg+xml" },
   });
