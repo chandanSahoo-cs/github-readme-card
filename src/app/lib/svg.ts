@@ -22,7 +22,7 @@ interface UserProfile {
     lastCommitDate: string;
     languages: string[];
     followers: number;
-    public_repos: Number;
+    public_repos: number;
   };
   competitivePlatform: {
     codeforces: {
@@ -58,7 +58,7 @@ const getCompressedBase64Avatar = async (
 
     return `data:image/jpeg;base64,${base64}`;
   } catch (error) {
-    console.error("Error ::", error);
+    console.error("Error :: ", error);
     return "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAADElEQVR4nGPgFRQHAABkADaBug1BAAAAAElFTkSuQmCC";
   }
 };
@@ -190,6 +190,7 @@ const fetchedData = async (): Promise<UserProfile | null> => {
 
     return res;
   } catch (error) {
+    console.log("Error :: ", error)
     return null;
   }
 };
@@ -382,7 +383,7 @@ export const profileSVG = async () => {
     `;
     return svg;
   } catch (error) {
-    console.error("Error ::", error);
+    console.error("Error :: ", error);
     const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="500" height="120" style="background:#0d1117; font-family: monospace;">
     <style>
     .terminal-bg { fill: #0d1117; }
