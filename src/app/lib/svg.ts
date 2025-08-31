@@ -92,7 +92,7 @@ const fetchedData = async (): Promise<UserProfile | null> => {
 
     // fetch repos to count stars
     const repoRes = await fetch(
-      `https://api.github.com/users/${USERNAME}/repos?per_page=100`,
+      `https://api.github.com/users/${USERNAME}/repos?per_page=100&sort=pushed&direction=des`,
       {
         headers,
       }
@@ -104,7 +104,7 @@ const fetchedData = async (): Promise<UserProfile | null> => {
     );
 
     const lastCommitDate = repos[0]?.updated_at
-      ? new Date(repos[0].updated_at).toLocaleDateString()
+      ? new Date(repos[0].updated_at).toLocaleString()
       : "N/A";
 
     const languages = repos
