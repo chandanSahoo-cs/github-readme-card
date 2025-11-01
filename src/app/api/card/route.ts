@@ -1,19 +1,31 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 // app/api/card/route.ts
-import { profileSVG } from "@/app/lib/svg";
-let latestSVG: string | null = null;
-let latestSVGTime = 0;
-const BUFFER_TIME = 1000 * 60 * 60;
+import { fetchedData, profileSVG, type UserProfile } from "@/app/lib/svg";
+let currentSVG: string | null = null;
+let currentSVGTime = 0;
+
+let currentProfileData: UserProfile | null = null;
+
+// const BUFFER_TIME = 1000 * 60 * 60;
+const BUFFER_TIME = 1000
+const INTERVAL_TIME = 1000;
+
+setInterval(async () => {
+  const fetchProfileData = await fetchedData();
+  if (fetchProfileData !== currentProfileData) {
+    currentProfileData = fetchProfileData;
+  }
+}, INTERVAL_TIME);
 
 export async function GET() {
   const now = Date.now();
 
-  if (!latestSVG || now - latestSVGTime > BUFFER_TIME) {
-    latestSVG = await profileSVG();
-    latestSVGTime = now;
+  if (!currentSVG || now - currentSVGTime > BUFFER_TIME) {
+    currentSVG = await profileSVG();
+    currentSVGTime = now;
   }
 
-  return new Response(latestSVG, {
+  return new Response(currentSVG, {
     headers: {
       "Content-Type": "image/svg+xml",
       "Cache-Control": "public, max-age=3600, stale-while-revalidate=60",

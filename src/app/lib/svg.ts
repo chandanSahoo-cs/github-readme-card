@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import sharp from "sharp";
+// import sharp from "sharp";
 
 const GH_TOKEN = process.env.GH_TOKEN; // set in Vercel project settings
 const headers = {
@@ -7,7 +7,7 @@ const headers = {
   "User-Agent": "chandanSahoo-cs-card", // required by GitHub API
 };
 
-const USERNAME = "chandanSahoo-cs";
+const USERNAME = "chandanSahoo-cs"
 
 interface UserProfile {
   user: {
@@ -48,15 +48,23 @@ const getCompressedBase64Avatar = async (
       throw new Error(`Failed to fetch image: ${response.statusText}`);
     }
 
-    const buffer = await response.arrayBuffer();
+    // const blob = await response.blob();
+    // const bitmap = await createImageBitmap(blob);
+    // const canvas = new OffscreenCanvas(bitmap.width,bitmap.height);
+    // const ctx = canvas.getContext("2d");
+    //
+    // if(!ctx) throw new Error("Failed to get 2D context");
+    // ctx.drawImage(bitmap,0,0);
+    // const compressedBlob = await canvas.convertToBlob({
+    //   type:"image/jpeg",
+    //   quality: 0.7,
+    // })
 
-    const compressedBuffer = await sharp(Buffer.from(buffer))
-      .jpeg({ quality: 70 })
-      .toBuffer();
-
-    const base64 = compressedBuffer.toString("base64");
+    const arrayBuffer = await response.arrayBuffer();
+    const base64 = btoa(String.fromCharCode(...new Uint8Array(arrayBuffer)));
 
     return `data:image/jpeg;base64,${base64}`;
+
   } catch (error) {
     console.error("Error :: ", error);
     return "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAADElEQVR4nGPgFRQHAABkADaBug1BAAAAAElFTkSuQmCC";
@@ -195,7 +203,7 @@ const fetchedData = async (): Promise<UserProfile | null> => {
   }
 };
 
-export const profileSVG = async () => {
+const profileSVG = async () => {
   try {
     const data = await fetchedData();
     console.log(data);
@@ -419,5 +427,7 @@ export const profileSVG = async () => {
     return svg;
   }
 };
+
+export { type UserProfile, fetchedData, profileSVG };
 
 /* eslint-enable @typescript-eslint/no-explicit-any */
