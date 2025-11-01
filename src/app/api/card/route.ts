@@ -6,7 +6,7 @@ let currentSVGTime = 0;
 
 let currentProfileData: UserProfile | null = null;
 
-const BUFFER_TIME = 1000;
+const BUFFER_TIME = 1000*60*60;
 const INTERVAL_TIME = 1000;
 
 setInterval(async () => {
