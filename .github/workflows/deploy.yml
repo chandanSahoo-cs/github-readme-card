@@ -18,6 +18,7 @@ jobs:
         with:
           node-version: 20
       - run: env | grep CLOUDFLARE
+      - run: env | grep GH_TOKEN
       - run: npx wrangler whoami
       - run: npm ci
       - run: npm run deploy
