@@ -18,8 +18,8 @@ setInterval(async () => {
 
 export async function GET() {
   const now = Date.now();
-
-  if (!currentSVG || now - currentSVGTime > BUFFER_TIME) {
+  const fetchProfileData = await fetchedData();
+  if (!fetchProfileData || !currentSVG || now - currentSVGTime > BUFFER_TIME) {
     currentSVG = await profileSVG();
     currentSVGTime = now;
   }
@@ -27,7 +27,7 @@ export async function GET() {
   return new Response(currentSVG, {
     headers: {
       "Content-Type": "image/svg+xml",
-      "Cache-Control": "public, max-age=3600, stale-while-revalidate=60",
+      "Cache-Control": "public, max-age=10, stale-while-revalidate=60",
     },
   });
 }
