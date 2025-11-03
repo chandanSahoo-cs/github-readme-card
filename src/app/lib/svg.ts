@@ -420,7 +420,7 @@ const profileSVG = async () => {
         </style>
         <rect width="100%" height="100%" fill="#0d1117" />
         <text x="20" y="40" class="prompt">$ git connect https://github.com/chandanSahoo-cs</text>
-        <text x="20" y="70" class="text">Failed to connect (>_<)</text>
+        <text x="20" y="70" class="text">Failed to connect ${error}</text>
         <text x="20" y="90" class="text">Check out my projects until then :)</text>
         </svg>
         `;
