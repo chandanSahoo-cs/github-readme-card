@@ -1,13 +1,15 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-// import sharp from "sharp";
 
-const GH_TOKEN = process.env.GH_TOKEN; // set in Vercel project settings
+import { base64image } from "../constants";
+
+// Config
+const GH_TOKEN = process.env.GH_TOKEN;
+const USERNAME = "chandanSahoo-cs";
+
 const headers = {
   Authorization: `Bearer ${GH_TOKEN}`,
-  "User-Agent": "chandanSahoo-cs-card", // required by GitHub API
+  "User-Agent": "chandanSahoo-cs-card",
 };
-
-const USERNAME = "chandanSahoo-cs"
 
 interface UserProfile {
   user: {
@@ -39,6 +41,8 @@ interface UserProfile {
   };
 }
 
+// Utitliy Functions
+
 const getCompressedBase64Avatar = async (
   avatar_url: string
 ): Promise<string> => {
@@ -47,18 +51,6 @@ const getCompressedBase64Avatar = async (
     if (!response.ok) {
       throw new Error(`Failed to fetch image: ${response.statusText}`);
     }
-
-    // const blob = await response.blob();
-    // const bitmap = await createImageBitmap(blob);
-    // const canvas = new OffscreenCanvas(bitmap.width,bitmap.height);
-    // const ctx = canvas.getContext("2d");
-    //
-    // if(!ctx) throw new Error("Failed to get 2D context");
-    // ctx.drawImage(bitmap,0,0);
-    // const compressedBlob = await canvas.convertToBlob({
-    //   type:"image/jpeg",
-    //   quality: 0.7,
-    // })
 
     const arrayBuffer = await response.arrayBuffer();
     const base64 = btoa(String.fromCharCode(...new Uint8Array(arrayBuffer)));
@@ -90,22 +82,41 @@ const getCurrentAge = (): string => {
   return age;
 };
 
+
+// Data fetch
 const fetchedData = async (): Promise<UserProfile | null> => {
   try {
-    const userRes = await fetch(`https://api.github.com/users/${USERNAME}`, {
-      headers,
-    });
-    const user = await userRes.json();
-    const userAvatar = await getCompressedBase64Avatar(user.avatar_url);
 
-    // fetch repos to count stars
-    const repoRes = await fetch(
-      `https://api.github.com/users/${USERNAME}/repos?per_page=100&sort=pushed&direction=des`,
-      {
+    const [userRes, repoRes, codeforces, codechef, leetcode] = await Promise.all([
+      fetch(`https://api.github.com/users/${USERNAME}`, {
         headers,
-      }
-    );
-    const repos = await repoRes.json();
+      }),
+      fetch(
+        `https://api.github.com/users/${USERNAME}/repos?per_page=100&sort=pushed&direction=des`,
+        {
+          headers,
+      }),
+      fetch(
+        "https://competeapi.vercel.app/user/codeforces/realmchan/"
+      ),
+      fetch(
+        "https://competeapi.vercel.app/user/codechef/realm/"
+      ),
+      fetch(
+        "https://competeapi.vercel.app/user/leetcode/realmchan/"
+      )
+    ])
+
+    const [user,repos,codeforcesDetails,codechefDetails,leetcodeDetails] = await Promise.all([
+      userRes.json(),
+      repoRes.json(),
+      codeforces.json(),
+      codechef.json(),
+      leetcode.json(),
+    ])
+
+    const userAvatar = base64image;
+
     const stars = repos.reduce(
       (sum: number, r: any) => sum + (r.stargazers_count || 0),
       0
@@ -130,25 +141,13 @@ const fetchedData = async (): Promise<UserProfile | null> => {
     const age = getCurrentAge();
 
     // Rank and Rating
-    const codeforces = await fetch(
-      "https://competeapi.vercel.app/user/codeforces/realmchan/"
-    );
-    const codeforcesDetails = await codeforces.json();
     const codeforcesRating = await codeforcesDetails[0].rating;
     const codeforcesRank = await codeforcesDetails[0].rank.toUpperCase();
 
-    const codechef = await fetch(
-      "https://competeapi.vercel.app/user/codechef/realm/"
-    );
-    const codechefDetails = await codechef.json();
     const codechefRating = await codechefDetails.rating_number;
     const codechefRank =
       (await codechefDetails.rating.toUpperCase()[0]) + " STAR";
 
-    const leetcode = await fetch(
-      "https://competeapi.vercel.app/user/leetcode/realmchan/"
-    );
-    const leetcodeDetails = await leetcode.json();
     const leetcodeRating = Math.floor(
       leetcodeDetails.data.userContestRanking.rating
     );
